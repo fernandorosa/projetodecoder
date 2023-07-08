@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.5.5-SNAPSHOT'
+	id 'org.springframework.boot' version '2.7.0-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
@@ -14,17 +14,28 @@ repositories {
 	maven { url 'https://repo.spring.io/snapshot' }
 }
 
+ext {
+	set('springCloudVersion', "2021.0.3")
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'net.kaczmarzyk', name: 'specification-arg-resolver', version: '2.6.2'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
 	compileOnly 'org.projectlombok:lombok'
 
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 tasks.named('test') {

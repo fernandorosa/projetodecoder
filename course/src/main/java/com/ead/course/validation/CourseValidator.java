@@ -5,18 +5,18 @@ import com.ead.course.dto.CourseDto;
 import com.ead.course.dto.UserDto;
 import com.ead.course.enums.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.client.HttpStatusCodeException;
 
 import java.util.UUID;
 
+@Component
 public class CourseValidator implements Validator {
   @Autowired
-  @Qualifier("defaultValidator")
   private Validator validator;
 
   @Autowired
